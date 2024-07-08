@@ -38,7 +38,7 @@
         <resource>
             <directory>src/test/java</directory>
             <includes>
-                <include>EquipmentReport.EquipmentReport/*.properties</include>
+                <include>EquipmentReport/*.properties</include>
             </includes>
         </resource>
         <!-- Add other resource directories as needed -->
