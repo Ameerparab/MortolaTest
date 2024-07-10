@@ -41,7 +41,6 @@ public class Report {
             playwright = Playwright.create();
             BrowserSelector browserSelector = new BrowserSelector();
             browser_1 = browserSelector.launchBrowser(browser);
-
             if (browser_1 != null) {
                 BrowserContext context = browser_1.newContext(new NewContextOptions().setRecordVideoDir(Paths.get("./ReportCreation/Video/")));
                 page = context.newPage();
@@ -50,27 +49,12 @@ public class Report {
                 String formattedDateTime = currentDateTime.format(formatter);
 
                 LoginHandler loginHandler = new LoginHandler();
-                loginHandler.login(page, appURL, username, password, formattedDateTime);        
-                // Verify and click on Status tab
-                Locator status = page.locator("//a[normalize-space()='Status']");
-                String Status = "Status";
-                Status = Status + formattedDateTime;
+                loginHandler.login(page, appURL, username, password, formattedDateTime);  
                 
-                try {
-                    assertThat(status).hasText("Status");  // Verifying Status text tab availability Status
-                    status.click();
-                } catch (AssertionError g) {
-                    // Assertion failed, capture screenshot
-                    System.out.println("Assertion failed for Status. Capturing screenshot...");
-                    ScreenshotOptions screenshot = new ScreenshotOptions();
-                    page.screenshot(screenshot.setFullPage(true).setPath(Paths.get("./ReportCreation/Snapshots/", Status + ".png")));
-                    g.printStackTrace();
-                    throw new RuntimeException("Assertion failed for Status. Stopping further execution.");
-                }
-                // Report Session
-                Locator rept = page.locator("//body/div[@class='wrapper']/div[@id='childNavRegion']/div[@class='child-nav-bar']/ul[@role='tablist']/li[2]/a[1]");
-                rept.click();
-                // Locate the SVG element using CSS selector
+                StatusReport  StatusReport= new StatusReport ();
+                StatusReport.streport(page,formattedDateTime);              
+                
+               // Locate the SVG element using CSS selector
                 Locator svgElement = page.locator("svg.fa-plus");
                 // Verify that the creation of report option is visible and available
                 assertThat(svgElement).isVisible();
