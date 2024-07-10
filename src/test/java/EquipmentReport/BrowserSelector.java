@@ -28,7 +28,7 @@ public class BrowserSelector {
                     browser = playwright.webkit().launch(new LaunchOptions().setHeadless(false));
                     break;
                 default:
-                    System.out.println("Unsupported browser: " + browserType);
+                    System.out.println("Unsupported browser:  " + browserType);
                     break;
             }
         } catch (Exception j) {

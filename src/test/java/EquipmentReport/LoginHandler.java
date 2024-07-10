@@ -31,7 +31,7 @@ public class LoginHandler {
             page.locator("//input[@id='username']").fill(username);
             page.locator("//input[@id='password' and @placeholder='Password']").fill(password);
             page.locator("//button[@id='sign-in']").click();
-            // Next Home page
+            // Next Home page displayed
             Locator logo2 = page.locator("//img[@src='/app-theme/navbar_logo']");
             assertThat(logo2).isVisible(); // Verifying Motorola Solution Logo2 on the next page
         } catch (Exception i) {

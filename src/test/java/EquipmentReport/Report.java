@@ -26,7 +26,6 @@ public class Report {
             ex.printStackTrace();
         }
     }
-
     public void useConfigProperties() {
         // Retrieve and use properties  from config.properties
         String browser = properties.getProperty("browser");
